@@ -60,9 +60,9 @@ sudo ifconfig br-tun-e2 up
 ##### -----=[ In mgmt cluster ]=----- ####
 
 # change to regional, edge01, edge02 IP address
-sudo ovs-vsctl add-port br-tun-r vxlan0 -- set interface vxlan0 type=vxlan options:remote_ip=172.18.0.121 options:dst_port=48317 options:tag=321
-sudo ovs-vsctl add-port br-tun-r vxlan0 -- set interface vxlan0 type=vxlan options:remote_ip=172.18.0.122 options:dst_port=48318 options:tag=321
-sudo ovs-vsctl add-port br-tun-r vxlan0 -- set interface vxlan0 type=vxlan options:remote_ip=172.18.0.123 options:dst_port=48319 options:tag=321
+sudo ovs-vsctl add-port br-tun-r vxlan0 -- set interface vxlan0 type=vxlan options:remote_ip=[regional_ip_address] options:dst_port=48317 options:tag=321
+sudo ovs-vsctl add-port br-tun-e1 vxlan1 -- set interface vxlan1 type=vxlan options:remote_ip=[edge01_ip_address] options:dst_port=48318 options:tag=321
+sudo ovs-vsctl add-port br-tun-e2 vxlan2 -- set interface vxlan2 type=vxlan options:remote_ip=[edge02_ip_address] options:dst_port=48319 options:tag=321
 ```
 
 ## 4.2 Set up Open vSwitch
