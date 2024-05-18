@@ -72,8 +72,15 @@ git push
 cd ~
 
 # using sed command, change repository name
-sed 's/nephio-project/[Github_user_ID]/g' ./test-infra/e2e/provision/playbooks/roles/bootstrap/defaults/main.yaml
-sed 's/nephio-project/[Github_user_ID]/g' ./test-infra/e2e/provision/playbooks/roles/install/defaults/main.yaml
+sed 's/nephio-project/[Github_user_ID]/g' -i ./test-infra/e2e/provision/playbooks/roles/bootstrap/defaults/main.yml
+sed 's/nephio-project/[Github_user_ID]/g' -i ./test-infra/e2e/provision/playbooks/roles/install/defaults/main.yml
+```
+
+### Set Max Open Files
+`nephio-webui` sometimes reaches the max number of open files allowed per process, which makes `nephio-webui` go into state Error, thus resulting failure of Nephio installation. Therefore, making the max number of open files for the system should be made into a bigger number. You can achieve this by the following command:
+```bash
+sudo sysctl fs.inotify.max_user_instances=1280
+sudo sysctl fs.inotify.max_user_watches=655360
 ```
 
 ### Run `init.sh` script
